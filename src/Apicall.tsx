@@ -1,16 +1,14 @@
-//This file is used to fetch data and format it
+//Contains functionality to fetch data and format it
 import Axios from 'axios';
 
-const millisInDay = 1000*60*60*24
-
 type rawData = {
-    prices: [number, number][];
+    prices: [number, number][]; //number tuples in array
     total_volumes: [number, number][];
     market_caps: [number, number][]
 }
 
-type UnifiedData = {
-    timestamp: number;
+export type UnifiedData = {
+    timestamp: number; //
     price: number;
     volume: number;
     cap: number;
@@ -19,8 +17,8 @@ type UnifiedData = {
 export async function fetchDataArray(start: number, end: number){
    const data: rawData = await apiRequest(start, end)
    const unifiedData: UnifiedData[] = unifyResults(data);
-   const midnightDataSet = getMidnightStamps(unifiedData) 
-   //highestVolume(data.total_volumes) //passing an array consisting of [dateAsMillis, 24h volume] arrays
+   const midnightDataSet = getMidnightStamps(unifiedData)
+   return midnightDataSet; 
 }
 
 async function apiRequest(start: number, end: number){
@@ -31,6 +29,8 @@ async function apiRequest(start: number, end: number){
     
 }
 
+
+//TODO: sort the timestamps ascending incase API starts spewing timestamps in random order, it will break getMidnightStamps function
 function unifyResults(data: rawData): UnifiedData[] {
     let unified: UnifiedData[] = [];
     for(let i = 0; i < data.prices.length; i++){
@@ -45,27 +45,17 @@ function unifyResults(data: rawData): UnifiedData[] {
 }
 
 function getMidnightStamps(data: UnifiedData[]){
-    console.log(data.length)
+
+    /* Comparing timestamp to previous in array, taking the first stamp of the day
+    and filtering out the rest. Should yield closest datapoint to midnight for each day*/
     const midnightData = data.filter((datapoint, index) => {
         const current = new Date(datapoint.timestamp).getUTCDay()
-        let old = null;
+        let old: number = NaN;
         if(index !== 0){
             old = new Date(data[index-1].timestamp).getUTCDay()
         }
-        return (old == null || current != old)
+        return (old == NaN || current != old)
     })
-    console.log(midnightData);
+    return midnightData;
     
 }
-
-function highestVolume(data: []) {
-
-}
-
-
-
-
-//data.prices
-//data.total_volumes
-//data.market_caps
-//47 695 238 999.5091

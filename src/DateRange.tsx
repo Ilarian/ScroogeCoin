@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
-import {fetchDataArray} from './Apicall';
+import App from './App'
+import React, {Props, useState} from 'react';
+import {fetchDataArray, UnifiedData} from './Apicall';
 
-    function DateRange() {
+
+    function DateRange(props: any) {
         const [start, setStart] = useState(NaN)
         const [end, setEnd] = useState(NaN)
 
-
+        
         function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-            fetchDataArray(start, end)
+            fetchDataArray(start, end).then( (res) => props.onCallback(res))
             event.preventDefault()
         }
 
