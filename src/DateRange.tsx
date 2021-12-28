@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {apicall} from './Apicall';
+import {fetchDataArray} from './Apicall';
 
     function DateRange() {
         const [start, setStart] = useState(NaN)
@@ -7,7 +7,7 @@ import {apicall} from './Apicall';
 
 
         function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-            apicall(start, end)
+            fetchDataArray(start, end)
             event.preventDefault()
         }
 
