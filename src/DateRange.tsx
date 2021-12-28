@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {apicall} from './Apicall';
 
     function DateRange() {
         const [start, setStart] = useState(NaN)
@@ -6,11 +7,12 @@ import React, { useState } from 'react';
 
 
         function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-            alert(start + " " + end)
+            apicall(start, end)
+            event.preventDefault()
         }
 
         function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
-            const value = event.target.valueAsNumber;
+            const value = event.target.valueAsNumber / 1000;
             (event.target.name === "start") ? setStart(value) : setEnd(value)
         }
 
