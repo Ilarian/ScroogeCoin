@@ -1,9 +1,10 @@
 import React from 'react';
 import './App.css';
+import DateRange from './DateRange'
 
 function App() {
   return (
-    <h1>hello world!</h1>
+    <DateRange />
   );
 }
 
