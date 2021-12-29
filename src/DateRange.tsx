@@ -1,21 +1,26 @@
-import App from './App'
-import React, {Props, useState} from 'react';
-import {fetchDataArray, UnifiedData} from './Apicall';
+import React, { useState} from 'react';
+import {fetchData} from './Apicall';
 
+type Props = {
+    callback: Function
+}
 
-    function DateRange(props: any) {
+    function DateRange(props: Props) {
         const [start, setStart] = useState(NaN)
         const [end, setEnd] = useState(NaN)
 
-        
+        //TODO: implement check for correct dates, IE. start date can't be later than end date.
+        //OR the same date apparently
         function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-            fetchDataArray(start, end).then( (res) => props.onCallback(res))
+            fetchData(start, end).then( (res) => props.callback(res))
             event.preventDefault()
         }
 
+        /*Add one day in seconds to end timestamp to include actual end date (ex. 29.12.2021) in query
+        allowing to query a single day as well*/
         function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
             const value = event.target.valueAsNumber / 1000;
-            (event.target.name === "start") ? setStart(value) : setEnd(value)
+            (event.target.name === "start") ? setStart(value) : setEnd(value  + 86399)
         }
 
 
