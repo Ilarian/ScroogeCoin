@@ -23,6 +23,7 @@ export async function fetchData(start: number, end: number){
 
 async function apiRequest(start: number, end: number){
     const url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart/range?vs_currency=eur&from="+start+"&to="+end
+    console.log(url)
      return Axios.get(url).then( (result) => {
         return result.data
     })
