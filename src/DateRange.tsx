@@ -10,14 +10,12 @@ type Props = {
         const [end, setEnd] = useState(NaN)
 
         //TODO: implement check for correct dates, IE. start date can't be later than end date.
-        //OR the same date apparently
         function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
             fetchData(start, end).then( (res) => props.callback(res))
             event.preventDefault()
         }
 
-        /*Add one day in seconds to end timestamp to include actual end date (ex. 29.12.2021) in query
-        allowing to query a single day as well*/
+        //Added (day - 1 second) to end date timestamp to include actual end date in query
         function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
             const value = event.target.valueAsNumber / 1000;
             (event.target.name === "start") ? setStart(value) : setEnd(value  + 86399)
