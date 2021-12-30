@@ -22,8 +22,39 @@ function DisplayData(props: Props){
 }
 
 function Bearish(props: Props){
-    
-    return <p>hi from bear</p>
+    let bearishPoints: UnifiedData[] = [props.data[0], props.data[0]]
+    let startPoint: UnifiedData = props.data[0];
+    let longestBearish: number = 0;
+    let bearish: number = 0;
+
+    for(let i = 1; i < props.data.length; i++){
+
+        let previousPoint: UnifiedData = props.data[i-1];
+        let currentPoint: UnifiedData = props.data[i];
+        if(currentPoint.price < previousPoint.price){
+            bearish++;
+        }else{
+            startPoint = currentPoint
+            bearish = 0
+        }
+
+        if (bearish > longestBearish){
+            longestBearish = bearish
+            bearishPoints[0] = startPoint
+            bearishPoints[1] = previousPoint
+        }
+
+    }
+
+   if(longestBearish > 0){
+       return (
+        <>
+            <p>Longest bearish trend was: {longestBearish} days :S</p>
+        </>
+       )
+   }else{
+       return <p>No bearish trend detected =)</p>
+   }
 }
 
 
@@ -39,22 +70,44 @@ function HighestVolume(props: Props){
 
 function MaxProfit(props: Props){
 
-    const highestPrice:UnifiedData = props.data.reduce((prev, curr) => {
-        return prev.price > curr.price ? prev : curr
-    })
+    //[0] stores the point to buy at and [1] the point to sell at for max profits
+    let profitDataPoints: UnifiedData[] = [props.data[0], props.data[0]];
+    let minPoint: UnifiedData = props.data[0];
+    let maxProfit: number = 0;
 
-    const lowestPrice:UnifiedData = props.data.reduce((prev, curr) => {
-        return prev.price < curr.price ? prev : curr
-    })
 
-    const highDate = new Date(highestPrice.timestamp).toDateString()
-    const lowDate = new Date(lowestPrice.timestamp).toDateString()
-    return (
-        <>
-            <p>Highest: {highestPrice.price} date: {highDate}</p>
-            <p>Lowest: {lowestPrice.price} date: {lowDate}</p>
-        </>
-    )
+    /*Loops over datapoint prices, comparing current datapoint price to lowest price and updating lowest price if necessary.
+    Saves the datapoints that produce maximum profit into the profitDataPoints array*/
+    for(let i = 1; i < props.data.length; i++){
+        const sellPoint: UnifiedData = props.data[i]
+        let profit = sellPoint.price - minPoint.price
+        if (profit > maxProfit){
+            maxProfit = profit;
+            profitDataPoints[0] = minPoint
+            profitDataPoints[1] = sellPoint
+        }else if(profit < 0){
+            minPoint = sellPoint
+        }
+    }
+
+    //Data formatting
+    const buyDate: String = new Date(profitDataPoints[0].timestamp).toDateString();
+    const sellDate: String = new Date(profitDataPoints[1].timestamp).toDateString();
+    const formattedProfit = maxProfit.toFixed(2)
+
+    if(maxProfit > 0){
+        return (
+            <>
+                <p>📅 buy: {buyDate}</p>
+                <p>📅 sell: {sellDate}</p>
+                <p>😃 Profit per bitcoin : {formattedProfit}€</p>
+            </>
+        )
+    }else{
+        return <p>No money to be made in the given date range :/</p>
+    }
+
+   
 }
 
 
