@@ -15,29 +15,11 @@
   margin: 0;
 }
 
-
-.info {
-  
-  display: flex;
-  height:50vh;
-  justify-content:space-between;
-  flex-direction: row;
-  margin: 5% 15% 0 20%;
-}
-
-@media screen and (max-width: 992px), screen and (max-height: 800px) {
-  .info {
-    flex-direction: column;
-  }
-}
-
-
-
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .header h1 {
     color: #ffdc6a;
-    font-size: 6vh;
+    font-size: 4vh;
     align-self: center;
     width: 100%;
     margin: 0;
