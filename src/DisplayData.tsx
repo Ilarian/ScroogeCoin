@@ -11,14 +11,24 @@ function DisplayData(props: Props){
     if(props.data.length !== 0){
         return (
         <>
-    
-            <div className={style.datacard}><Bearish data={props.data}/></div>
-            <div className={style.datacard}><HighestVolume data={props.data}/></div>
-            <div className={style.datacard}><MaxProfit data={props.data}/></div>
+        <div className={style.info}>
+            <div className={style.datacard}>
+                <h1>Bearish</h1>
+                <Bearish data={props.data}/>
+            </div>
+            <div className={style.datacard}>
+                <h1>24h Volume</h1>
+                <HighestVolume data={props.data}/>
+            </div>
+            <div className={style.datacard}>
+                <h1>Timemachine</h1>
+                <MaxProfit data={props.data}/>
+            </div>
+        </div>
         </>
     )}
     else{
-        return <p>No data yet</p>
+        return <h1 className={style.nodata}>Please enter date range and fetch bitcoin data</h1>
     }
     
 }
@@ -43,19 +53,24 @@ function Bearish(props: Props){
         if (bearish > longestBearish){
             longestBearish = bearish
             bearishPoints[0] = startPoint
-            bearishPoints[1] = previousPoint
+            bearishPoints[1] = currentPoint
         }
 
     }
 
+    const bearishStart: String = new Date(bearishPoints[0].timestamp).toDateString()
+    const bearishEnd: String = new Date(bearishPoints[1].timestamp).toDateString()
+
    if(longestBearish > 0){
        return (
         <div className={style.center}>
-            <p>Bearish trend: {longestBearish} days</p>
+            <p>📉 Bearish trend: {longestBearish} days</p>
+            <p>Started {bearishStart}</p>
+            <p>Ended {bearishEnd}</p>
         </div>
        )
    }else{
-       return <p>No bearish trend detected =)</p>
+       return <p>Bitcoin has only went up! 📈</p>
    }
 }
 
@@ -67,9 +82,17 @@ function HighestVolume(props: Props){
         return prev.volume > curr.volume ? prev : curr
     })
 
+
+    const volumeDate = new Date(highestVolume.timestamp).toDateString()
+
+    const formattedVolume: number = +highestVolume.volume.toFixed(0)
+    const newFormat = Intl.NumberFormat().format(formattedVolume);
+
+
     return(
         <div className={style.center}>
-        <p>highest volume: {highestVolume.volume}</p>
+            <p>{newFormat}€</p>
+            <p>Traded on {volumeDate}📅</p>
         </div>
         )
 }
@@ -104,13 +127,18 @@ function MaxProfit(props: Props){
     if(maxProfit > 0){
         return (
             <div className={style.center}>
-                <p>📅 buy: {buyDate}</p>
-                <p>📅 sell: {sellDate}</p>
-                <p>😃 Profit per bitcoin : {formattedProfit}€</p>
+                <p>Buy: {buyDate} 📅</p>
+                <p>Sell: {sellDate} 📅</p>
+                <p>Profit per bitcoin: {formattedProfit}€</p>
             </div>
         )
     }else{
-        return <p>No money to be made in the given date range :/</p>
+        return (
+            <div className={style.center}>
+                <p>No money to be made in give range</p>
+                <p>💸💸💸</p>
+            </div>
+            )
     }
 
    

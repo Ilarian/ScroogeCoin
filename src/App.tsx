@@ -22,7 +22,7 @@ function App() {
       <div className={style.date}>
         <DateRange callback={setData}/>
       </div>
-      <div className={style.info}>
+      <div>
         <DisplayData data={midnightDataSet}/>
       </div>
     </>

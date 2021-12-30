@@ -1,5 +1,6 @@
 import React, { useState} from 'react';
 import {fetchData} from './Apicall';
+import style from './css/daterange.module.css'
 
 type Props = {
     callback: Function
@@ -23,16 +24,17 @@ type Props = {
 
 
         return(
-            <form onSubmit={handleSubmit}>
-                <label>Start date:
+            <form className={style.container}onSubmit={handleSubmit}>
+                <div className={style.containerdiv}>
+                <h2>Start date</h2>
                     <input name="start" type="date" onChange={handleChange} />
-                </label>
+                
 
-                <label>End date:
+                <h2>End date</h2>
                     <input name="end" type="date" onChange={handleChange} />
-                </label>
-                <br></br>
-                <button type="submit">Set dates</button>
+                
+                <button type="submit">Fetch</button>
+                </div>
             </form>
         );
     }
