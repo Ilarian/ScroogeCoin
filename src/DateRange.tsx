@@ -31,6 +31,7 @@ type Props = {
                 <label>End date:
                     <input name="end" type="date" onChange={handleChange} />
                 </label>
+                <br></br>
                 <button type="submit">Set dates</button>
             </form>
         );

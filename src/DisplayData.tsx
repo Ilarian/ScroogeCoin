@@ -7,7 +7,7 @@ type Props = {
 
 function DisplayData(props: Props){
 
-    if(props.data.length != 0){
+    if(props.data.length !== 0){
         return (
         <>
             <Bearish data={props.data}/>

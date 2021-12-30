@@ -1,5 +1,5 @@
 import  { useState } from 'react';
-import './App.css';
+import style from './app.module.css';
 import DateRange from './DateRange'
 import DisplayData from './DisplayData'
 import {UnifiedData} from './Apicall'
@@ -16,7 +16,10 @@ function App() {
   
   return (
     <>
-      <div>
+      <div className={style.header}>
+        <h1>Scrooge's Coin App</h1>
+      </div>
+      <div className={style.date}>
         <DateRange callback={setData}/>
       </div>
       <div>

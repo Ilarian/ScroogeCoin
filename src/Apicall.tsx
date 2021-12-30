@@ -51,7 +51,7 @@ function getMidnightStamps(data: UnifiedData[]){
     const midnightData = data.filter((datapoint, index) => {
         const current = new Date(datapoint.timestamp).getUTCDay()
         let old: number = (index !== 0) ? new Date(data[index-1].timestamp).getUTCDay() : NaN
-        return (old == NaN || current != old)
+        return (isNaN(old) || current !== old)
     })
     return midnightData;
     
