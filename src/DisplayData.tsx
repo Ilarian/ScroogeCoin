@@ -1,5 +1,6 @@
 import React from 'react'
 import {UnifiedData} from './Apicall'
+import style from './css/datadisplay.module.css'
 
 type Props = {
     data: UnifiedData[]
@@ -10,9 +11,10 @@ function DisplayData(props: Props){
     if(props.data.length !== 0){
         return (
         <>
-            <Bearish data={props.data}/>
-            <HighestVolume data={props.data}/>
-            <MaxProfit data={props.data}/>
+    
+            <div className={style.datacard}><Bearish data={props.data}/></div>
+            <div className={style.datacard}><HighestVolume data={props.data}/></div>
+            <div className={style.datacard}><MaxProfit data={props.data}/></div>
         </>
     )}
     else{
@@ -48,9 +50,9 @@ function Bearish(props: Props){
 
    if(longestBearish > 0){
        return (
-        <>
-            <p>Longest bearish trend was: {longestBearish} days :S</p>
-        </>
+        <div className={style.center}>
+            <p>Bearish trend: {longestBearish} days</p>
+        </div>
        )
    }else{
        return <p>No bearish trend detected =)</p>
@@ -65,7 +67,11 @@ function HighestVolume(props: Props){
         return prev.volume > curr.volume ? prev : curr
     })
 
-    return <p>highest volume: {highestVolume.volume}</p>
+    return(
+        <div className={style.center}>
+        <p>highest volume: {highestVolume.volume}</p>
+        </div>
+        )
 }
 
 function MaxProfit(props: Props){
@@ -97,11 +103,11 @@ function MaxProfit(props: Props){
 
     if(maxProfit > 0){
         return (
-            <>
+            <div className={style.center}>
                 <p>📅 buy: {buyDate}</p>
                 <p>📅 sell: {sellDate}</p>
                 <p>😃 Profit per bitcoin : {formattedProfit}€</p>
-            </>
+            </div>
         )
     }else{
         return <p>No money to be made in the given date range :/</p>

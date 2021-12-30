@@ -1,0 +1,31 @@
+.header {
+  background-color: seagreen;
+  text-align: center;
+  margin-bottom: 2vh;
+}
+
+.header h1 {
+  font-size: 1.5em;
+  margin: 0;
+  padding-bottom: 8px;
+}
+
+.date {
+  text-align: center;
+}
+
+.info {
+
+  margin-top:5%;
+  display: flex;
+  height:50vh;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1000px) {
+  .info {
+    flex-direction: column;
+  }
+}

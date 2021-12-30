@@ -1,0 +1,21 @@
+.datacard {
+    display: flex;
+    justify-content: center;
+    flex-basis: 25%;
+    border: 3px solid;
+    border-radius: 1em;
+    margin:3%;
+    background-color: rgb(255, 177, 32);
+    box-shadow: 12px 12px 2px 1px seagreen;
+}
+
+.datacard p{
+    font-size:1.5em;
+}
+
+.center {
+    display: flex;
+    align-self:center;
+    flex-direction: column;
+    font-size: 1.5em;
+}

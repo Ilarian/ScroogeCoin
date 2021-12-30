@@ -1,5 +1,5 @@
 import  { useState } from 'react';
-import style from './app.module.css';
+import style from './css/app.module.css';
 import DateRange from './DateRange'
 import DisplayData from './DisplayData'
 import {UnifiedData} from './Apicall'
@@ -22,7 +22,7 @@ function App() {
       <div className={style.date}>
         <DateRange callback={setData}/>
       </div>
-      <div>
+      <div className={style.info}>
         <DisplayData data={midnightDataSet}/>
       </div>
     </>
