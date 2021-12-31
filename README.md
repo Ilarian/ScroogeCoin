@@ -21,6 +21,6 @@ There's an implementation on [Heroku](https://scroogescoinapp.herokuapp.com/)
 - npm (8.3.0 or higher)
 
 #### Setup instructions
-`git clone https://github.com/Ilarian/ScroogeCoin`
-`npm install`
-`npm start`
+- `git clone https://github.com/Ilarian/ScroogeCoin`
+- `npm install`
+- `npm start`
