@@ -17,7 +17,7 @@ function DisplayData(props: Props){
                 <Bearish data={props.data}/>
             </div>
             <div className={style.datacard}>
-                <h1>24h Volume</h1>
+                <h1>Highest Volume</h1>
                 <HighestVolume data={props.data}/>
             </div>
             <div className={style.datacard}>
