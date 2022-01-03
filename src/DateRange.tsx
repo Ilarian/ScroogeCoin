@@ -12,7 +12,16 @@ type Props = {
 
         //On submit calls the coingecko api with given dates
         function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-            fetchData(start, end).then( (res) => props.callback(res))
+
+            //nextDay is used to check that end date can't be later than today
+            const nextDay = (Date.now() / 1000 + 86400)
+            if(start > end){
+                alert("Start date can't be later than end date")
+            }else if (end > nextDay) { 
+                alert("End date can't be later than today")
+            }else{
+                fetchData(start, end).then( (res) => props.callback(res))
+            }
             event.preventDefault()
         }
 
