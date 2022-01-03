@@ -10,7 +10,7 @@ type Props = {
         const [start, setStart] = useState(NaN)
         const [end, setEnd] = useState(NaN)
 
-        //TODO: implement check for correct dates, IE. start date can't be later than end date.
+        //On submit calls the coingecko api with given dates
         function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
             fetchData(start, end).then( (res) => props.callback(res))
             event.preventDefault()

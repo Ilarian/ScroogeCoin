@@ -75,7 +75,6 @@ function Bearish(props: Props){
 }
 
 
-//TODO: make own functions for min/max values, DRY
 function HighestVolume(props: Props){
 
     const highestVolume: UnifiedData = props.data.reduce((prev, curr) => {
@@ -83,6 +82,7 @@ function HighestVolume(props: Props){
     })
 
 
+    //Data formatting
     const volumeDate = new Date(highestVolume.timestamp).toDateString()
 
     const formattedVolume: number = +highestVolume.volume.toFixed(0)
@@ -135,7 +135,7 @@ function MaxProfit(props: Props){
     }else{
         return (
             <div className={style.center}>
-                <p>No money to be made in give range</p>
+                <p>No money to be made in given range</p>
                 <p>💸💸💸</p>
             </div>
             )
