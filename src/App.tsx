@@ -11,9 +11,6 @@ function App() {
 
   const [midnightDataSet, setData] = useState<UnifiedData[]>([])
 
-  console.log(midnightDataSet);
-  
-  
   return (
     <>
       <div className={style.header}>

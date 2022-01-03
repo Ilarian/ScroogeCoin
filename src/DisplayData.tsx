@@ -70,7 +70,11 @@ function Bearish(props: Props){
         </div>
        )
    }else{
-       return <p>Bitcoin has only went up! 📈</p>
+       return (
+        <div className={style.center}>
+        <p>Bitcoin has only went up! 📈</p>
+        </div>
+       )
    }
 }
 
