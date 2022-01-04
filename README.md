@@ -12,7 +12,7 @@ Data includes:
 
 ### Heroku
 There's an implementation on [Heroku](https://scroogescoinapp.herokuapp.com/)\
-Startup might take a minute or two, if it the app hasn't been used recently.
+Startup might take a minute or two, if it hasn't been used recently.
 
 ### Local machine
 
