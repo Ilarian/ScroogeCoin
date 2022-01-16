@@ -32,13 +32,11 @@ function DateRange(props: Props) {
 		(event.target.name === "start") ? setStart(value) : setEnd(value  + 86399);
 	}
 
-
 	return(
 		<form className={style.container}onSubmit={handleSubmit}>
 			<div className={style.containerdiv}>
 				<h2>Start date</h2>
 				<input name="start" type="date" onChange={handleChange} />
-                
 
 				<h2>End date</h2>
 				<input name="end" type="date" onChange={handleChange} />

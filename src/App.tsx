@@ -4,9 +4,6 @@ import DateRange from "./DateRange";
 import DisplayData from "./DisplayData";
 import {UnifiedData} from "./Apicall";
 
-
-
-
 function App() {
 
 	const [midnightDataSet, setData] = useState<UnifiedData[]>([]);
@@ -25,6 +22,5 @@ function App() {
 		</div>
 	);
 }
-
 
 export default App;
