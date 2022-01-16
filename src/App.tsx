@@ -1,8 +1,8 @@
 import  React, { useState } from "react";
 import style from "./css/app.module.css";
-import DateRange from "./DateRange";
-import DisplayData from "./DisplayData";
-import {UnifiedData} from "./Apicall";
+import DateRange from "./components/DateRange";
+import DisplayData from "./components/DisplayData";
+import {UnifiedData} from "./components/Apicall";
 
 function App() {
 
