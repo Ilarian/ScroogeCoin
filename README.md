@@ -11,16 +11,17 @@ Data includes:
 ## How to use?
 
 ### Heroku
-There's an implementation on [Heroku](https://scroogescoinapp.herokuapp.com/)
+There's an implementation on [Heroku](https://scroogescoinapp.herokuapp.com/)\
+Startup might take a minute or two, if it hasn't been used recently.
 
 ### Local machine
 
 #### Requirements
 - git
-- node (v.14.15.4 or higher)
-- npm (8.3.0 or higher)
+- npm (I used 8.3.0 but pretty much anything should work)
 
 #### Setup instructions
 - `git clone https://github.com/Ilarian/ScroogeCoin`
+- `cd ScroogeCoin`
 - `npm install`
 - `npm start`
