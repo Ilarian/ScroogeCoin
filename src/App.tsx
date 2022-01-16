@@ -1,29 +1,29 @@
-import  { useState } from 'react';
-import style from './css/app.module.css';
-import DateRange from './DateRange'
-import DisplayData from './DisplayData'
-import {UnifiedData} from './Apicall'
+import  React, { useState } from "react";
+import style from "./css/app.module.css";
+import DateRange from "./DateRange";
+import DisplayData from "./DisplayData";
+import {UnifiedData} from "./Apicall";
 
 
 
 
 function App() {
 
-  const [midnightDataSet, setData] = useState<UnifiedData[]>([])
+	const [midnightDataSet, setData] = useState<UnifiedData[]>([]);
 
-  return (
-    <>
-      <div className={style.header}>
-        <h1>Scrooge's Coin App</h1>
-      </div>
-      <div className={style.date}>
-        <DateRange callback={setData}/>
-      </div>
-      <div>
-        <DisplayData data={midnightDataSet}/>
-      </div>
-    </>
-  );
+	return (
+		<div>
+			<div className={style.header}>
+				<h1>Scrooge&#39;s Coin App</h1>
+			</div>
+			<div className={style.date}>
+				<DateRange callback={setData}/>
+			</div>
+			<div>
+				<DisplayData data={midnightDataSet}/>
+			</div>
+		</div>
+	);
 }
 
 
