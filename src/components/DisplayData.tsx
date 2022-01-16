@@ -1,6 +1,8 @@
 import React from "react";
 import {UnifiedData} from "./Apicall";
+import BearishData from "./BearishData";
 import style from "./css/datadisplay.module.css";
+import VolumeData from "./VolumeData";
 
 type Props = {
     data: UnifiedData[]
@@ -14,11 +16,11 @@ function DisplayData(props: Props){
 				<div className={style.info}>
 					<div className={style.datacard}>
 						<h1>Bearish</h1>
-						<Bearish data={props.data}/>
+						<BearishData data={props.data}/>
 					</div>
 					<div className={style.datacard}>
 						<h1>Highest Volume</h1>
-						<HighestVolume data={props.data}/>
+						<VolumeData data={props.data}/>
 					</div>
 					<div className={style.datacard}>
 						<h1>Timemachine</h1>
@@ -33,81 +35,13 @@ function DisplayData(props: Props){
     
 }
 
-function Bearish(props: Props){
-	const bearishPoints: UnifiedData[] = [props.data[0], props.data[0]];
-	let startPoint: UnifiedData = props.data[0];
-	let longestBearish = 0;
-	let bearish = 0;
-
-	for(let i = 1; i < props.data.length; i++){
-
-		const previousPoint: UnifiedData = props.data[i-1];
-		const currentPoint: UnifiedData = props.data[i];
-		if(currentPoint.price < previousPoint.price){
-			bearish++;
-		}else{
-			startPoint = currentPoint;
-			bearish = 0;
-		}
-
-		if (bearish > longestBearish){
-			longestBearish = bearish;
-			bearishPoints[0] = startPoint;
-			bearishPoints[1] = currentPoint;
-		}
-
-	}
-
-	const bearishStart: string = new Date(bearishPoints[0].timestamp).toDateString();
-	const bearishEnd: string = new Date(bearishPoints[1].timestamp).toDateString();
-
-	if(longestBearish > 0){
-		return (
-			<div className={style.center}>
-				<p>📉 Bearish trend: {longestBearish} days</p>
-				<p>Started {bearishStart}</p>
-				<p>Ended {bearishEnd}</p>
-			</div>
-		);
-	}else{
-		return (
-			<div className={style.center}>
-				<p>Bitcoin has only went up! 📈</p>
-			</div>
-		);
-	}
-}
-
-
-function HighestVolume(props: Props){
-
-	const highestVolume: UnifiedData = props.data.reduce((prev, curr) => {
-		return prev.volume > curr.volume ? prev : curr;
-	});
-
-
-	//Data formatting
-	const volumeDate = new Date(highestVolume.timestamp).toDateString();
-
-	const formattedVolume: number = +highestVolume.volume.toFixed(0);
-	const newFormat = Intl.NumberFormat().format(formattedVolume);
-
-
-	return(
-		<div className={style.center}>
-			<p>{newFormat}€</p>
-			<p>Traded on {volumeDate}📅</p>
-		</div>
-	);
-}
-
 function MaxProfit(props: Props){
 
 	//[0] stores the point to buy at and [1] the point to sell at for max profits
 	const profitDataPoints: UnifiedData[] = [props.data[0], props.data[0]];
 	let minPoint: UnifiedData = props.data[0];
 	let maxProfit = 0;
-
+	console.log(props.data);
 
 	/*Loops over datapoint prices, comparing current datapoint price to lowest price
 	and updating lowest price if necessary.
@@ -145,9 +79,7 @@ function MaxProfit(props: Props){
 			</div>
 		);
 	}
-
    
 }
-
 
 export default DisplayData;
