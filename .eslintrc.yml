@@ -26,4 +26,7 @@ rules:
     - always
   max-len:
     - error
-    - code: 150 # Max line length.
+    - {code: 100, ignoreUrls: true, ignoreComments: true}
+  no-multiple-empty-lines:
+    - error
+    - {max: 1, maxEOF: 0}

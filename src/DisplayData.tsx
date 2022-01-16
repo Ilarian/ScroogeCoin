@@ -109,7 +109,8 @@ function MaxProfit(props: Props){
 	let maxProfit = 0;
 
 
-	/*Loops over datapoint prices, comparing current datapoint price to lowest price and updating lowest price if necessary.
+	/*Loops over datapoint prices, comparing current datapoint price to lowest price
+	and updating lowest price if necessary.
     Saves the datapoints that produce maximum profit into the profitDataPoints array*/
 	for(let i = 1; i < props.data.length; i++){
 		const sellPoint: UnifiedData = props.data[i];

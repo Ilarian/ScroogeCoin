@@ -29,7 +29,6 @@ async function apiRequest(start: number, end: number){
     
 }
 
-
 //TODO: sort the objects by ascending timestamps incase API starts spewing timestamps in random order, it will break getMidnightStamps function
 function unifyResults(data: rawData): UnifiedData[] {
 	const unified: UnifiedData[] = [];
@@ -49,11 +48,8 @@ function unifyResults(data: rawData): UnifiedData[] {
  Should yield closest datapoint to midnight for each day*/
 function getMidnightStamps(data: UnifiedData[]){
 	const midnightData = data.filter((datapoint, index) => {
-
 		const current = new Date(datapoint.timestamp).getUTCDay();
-
 		const old: number = (index !== 0) ? new Date(data[index-1].timestamp).getUTCDay() : NaN;
-
 		return (isNaN(old) || current !== old);
 	});
 	return midnightData;
