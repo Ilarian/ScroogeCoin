@@ -1,6 +1,6 @@
 import React from "react";
-import {UnifiedData} from "./Apicall";
-import style from "./css/datadisplay.module.css";
+import {UnifiedData} from "../Apicall";
+import style from "../css/datadisplay.module.css";
 
 interface Props {
     data: UnifiedData[];
