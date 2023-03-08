@@ -11,8 +11,7 @@ Data includes:
 ## How to use?
 
 ### Heroku
-There's an implementation on [Heroku](https://scroogescoinapp.herokuapp.com/)\
-Startup might take a minute or two, if it hasn't been used recently.
+There's an implementation on [Azure](https://gray-forest-004cabe03.2.azurestaticapps.net/)\
 
 ### Local machine
 
