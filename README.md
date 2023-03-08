@@ -10,7 +10,7 @@ Data includes:
 
 ## How to use?
 
-### Heroku
+### Azure
 There's an implementation on [Azure](https://gray-forest-004cabe03.2.azurestaticapps.net/)
 
 ### Local machine
