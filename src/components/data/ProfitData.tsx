@@ -1,4 +1,3 @@
-import { format } from "path/posix";
 import React from "react";
 import { UnifiedData } from "../Apicall";
 import style from "../css/datadisplay.module.css";
